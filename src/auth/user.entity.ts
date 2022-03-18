@@ -21,7 +21,7 @@ export class User {
   contact_number: number;
 
   @Column()
-  user_role_id: string;
+  registration_notes: string;
 
   @Column()
   company_id: string;

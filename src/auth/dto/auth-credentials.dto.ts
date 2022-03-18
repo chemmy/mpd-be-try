@@ -28,8 +28,8 @@ export class AuthCredentialsDto {
 
   @IsString()
   @MinLength(3)
-  @MaxLength(32)
-  user_role_id: string;
+  @MaxLength(100)
+  registration_notes: string;
 
   @IsString()
   @MinLength(3)

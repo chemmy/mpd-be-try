@@ -18,7 +18,7 @@ export class User {
   lastname: string;
 
   @Column()
-  contact_number: number;
+  contact_number: string;
 
   @Column()
   registration_notes: string;

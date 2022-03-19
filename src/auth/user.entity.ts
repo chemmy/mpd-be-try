@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserRoles } from './user-roles.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
@@ -28,4 +28,7 @@ export class User {
 
   @Column()
   status: string;
+
+  @OneToMany(() => UserRoles, (userRoles) => userRoles.user)
+  userRoles: UserRoles[];
 }

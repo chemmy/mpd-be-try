@@ -1,6 +1,6 @@
 import { User } from './user.entity';
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Sites } from './sites.entity';
+import { Sites } from '../auth/sites.entity';
 
 @Entity()
 export class UserSites {

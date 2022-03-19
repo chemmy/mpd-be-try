@@ -5,7 +5,7 @@ import { Roles } from './roles.entity';
 @Entity()
 export class UserRoles {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   role_id: string;
@@ -13,9 +13,9 @@ export class UserRoles {
   @Column()
   status: string;
 
-  @ManyToOne(() => User, (user) => user.userRoles, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.userRoles, { onDelete: 'SET NULL' })
   user: User;
 
-  @ManyToOne(() => Roles, (roles) => roles.userRoles)
+  @ManyToOne(() => Roles, (roles) => roles.userRoles, { onDelete: 'SET NULL' })
   roles: Roles;
 }

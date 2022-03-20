@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Roles } from './auth/roles.entity';
 import { UsersModule } from './users/users.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './users/roles.guard';
 
 @Module({
   imports: [
@@ -25,6 +27,12 @@ import { UsersModule } from './users/users.module';
     }),
     TypeOrmModule.forFeature([User, UserRoles, Roles, UserSites, Sites]),
     UsersModule,
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
   ],
 })
 export class AppModule {}

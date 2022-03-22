@@ -1,9 +1,9 @@
 import { User } from './user.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Roles } from '../auth/roles.entity';
+import { Role } from '../auth/role.entity';
 
 @Entity()
-export class UserRoles {
+export class UserRole {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -13,9 +13,9 @@ export class UserRoles {
   @Column()
   status: string;
 
-  @ManyToOne(() => User, (user) => user.userRoles, { onDelete: 'SET NULL' })
+  @ManyToOne(() => User, (user) => user.userRole, { onDelete: 'SET NULL' })
   user: User;
 
-  @ManyToOne(() => Roles, (roles) => roles.userRoles, { onDelete: 'SET NULL' })
-  roles: Roles;
+  @ManyToOne(() => Role, (role) => role.userRole, { onDelete: 'SET NULL' })
+  role: Role;
 }

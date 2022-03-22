@@ -1,25 +1,16 @@
-import { Sites } from './auth/sites.entity';
-import { UserSites } from './users/user-sites.entity';
-import { UserRoles } from './users/user-roles.entity';
+import { CompanySite } from './company/entities/company-site.entity';
+import { UserSite } from './users/user-site.entity';
+import { UserRole } from './users/user-role.entity';
 import { User } from './users/user.entity';
 import { Module } from '@nestjs/common';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Roles } from './auth/roles.entity';
+import { Role } from './auth/role.entity';
 import { UsersModule } from './users/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './users/roles.guard';
-// import { MongooseModule } from '@nestjs/mongoose';
-// import config from './config';
-
-// const userString =
-//   config.db.user && config.db.pass
-//     ? config.db.user + ':' + config.db.pass + '@'
-//     : '';
-// const authSource = config.db.authSource
-//   ? '?authSource=' + config.db.authSource + '&w=1'
-//   : '';
+import { CompanyModule } from './company/company.module';
 
 @Module({
   imports: [
@@ -35,18 +26,9 @@ import { RolesGuard } from './users/roles.guard';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User, UserRoles, Roles, UserSites, Sites]),
+    TypeOrmModule.forFeature([User, UserRole, Role, UserSite, CompanySite]),
     UsersModule,
-    // MongooseModule.forRoot(
-    //   'mongodb://' +
-    //     userString +
-    //     config.db.host +
-    //     ':' +
-    //     (config.db.port || '27017') +
-    //     '/' +
-    //     config.db.database +
-    //     authSource,
-    // ),
+    CompanyModule,
   ],
   providers: [
     {

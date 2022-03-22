@@ -7,6 +7,7 @@ import {
   // Req,
   // UseGuards
 } from '@nestjs/common';
+
 // import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
@@ -14,15 +15,15 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/signup')
-  signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
+  async signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
     return this.authService.signUp(authCredentialsDto);
   }
 
   @Post('/signin')
-  signIn(
+  async signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ accessToken: string }> {
-    return this.authService.signIn(authCredentialsDto);
+    return await this.authService.signIn(authCredentialsDto);
   }
 
   // test signin with token

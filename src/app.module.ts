@@ -7,9 +7,19 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Roles } from './auth/roles.entity';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './users/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './users/roles.guard';
+// import { MongooseModule } from '@nestjs/mongoose';
+// import config from './config';
+
+// const userString =
+//   config.db.user && config.db.pass
+//     ? config.db.user + ':' + config.db.pass + '@'
+//     : '';
+// const authSource = config.db.authSource
+//   ? '?authSource=' + config.db.authSource + '&w=1'
+//   : '';
 
 @Module({
   imports: [
@@ -27,6 +37,16 @@ import { RolesGuard } from './users/roles.guard';
     }),
     TypeOrmModule.forFeature([User, UserRoles, Roles, UserSites, Sites]),
     UsersModule,
+    // MongooseModule.forRoot(
+    //   'mongodb://' +
+    //     userString +
+    //     config.db.host +
+    //     ':' +
+    //     (config.db.port || '27017') +
+    //     '/' +
+    //     config.db.database +
+    //     authSource,
+    // ),
   ],
   providers: [
     {

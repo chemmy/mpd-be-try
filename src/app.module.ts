@@ -11,6 +11,8 @@ import { UsersModule } from './users/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './users/roles.guard';
 import { CompanyModule } from './company/company.module';
+import { SendgridService } from './sendgrid/sendgrid.service';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -29,12 +31,14 @@ import { CompanyModule } from './company/company.module';
     TypeOrmModule.forFeature([User, UserRole, Role, UserSite, CompanySite]),
     UsersModule,
     CompanyModule,
+    ConfigModule.forRoot(),
   ],
   providers: [
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    SendgridService,
   ],
 })
 export class AppModule {}

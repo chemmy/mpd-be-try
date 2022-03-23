@@ -1,4 +1,4 @@
-import { AuthCredentialsDto } from './dto/auth-credentials.dto';
+import { AuthCredentialsDto } from '../auth/dto/auth-credentials.dto';
 import { EntityRepository, Repository } from 'typeorm';
 import { User } from './user.entity';
 import {
@@ -16,7 +16,7 @@ export class UsersRepository extends Repository<User> {
       firstname,
       lastname,
       contact_number,
-      user_role_id,
+      registration_notes,
       company_id,
       status,
     } = authCredentialsDto;
@@ -30,7 +30,7 @@ export class UsersRepository extends Repository<User> {
       firstname,
       lastname,
       contact_number,
-      user_role_id,
+      registration_notes,
       company_id,
       status,
     });

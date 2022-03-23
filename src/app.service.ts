@@ -1,3 +1,4 @@
+import { Password } from './password/password.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { User } from './users/user.entity';
@@ -11,9 +12,18 @@ import { Repository } from 'typeorm';
 export class AppService {
   constructor(
     @InjectRepository(User) private userRepo: Repository<User>,
-    @InjectRepository(UserRole) private userRolesRepo: Repository<UserRole>,
-    @InjectRepository(UserSite) private userSitesRepo: Repository<UserSite>,
-    @InjectRepository(Role) private rolesRepo: Repository<Role>,
-    @InjectRepository(CompanySite) private sitesRepo: Repository<CompanySite>,
+    @InjectRepository(UserRole) private userRoleRepo: Repository<UserRole>,
+    @InjectRepository(UserSite) private userSiteRepo: Repository<UserSite>,
+    @InjectRepository(Role) private roleRepo: Repository<Role>,
+    @InjectRepository(CompanySite) private siteRepo: Repository<CompanySite>,
+    @InjectRepository(Password) private passwordRepo: Repository<Password>,
   ) {}
+
+  async findOne(condition: any): Promise<User> {
+    return this.userRepo.findOne(condition);
+  }
+
+  async update(id: number, data: any): Promise<any> {
+    return this.userRepo.update(id, data);
+  }
 }

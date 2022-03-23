@@ -1,3 +1,5 @@
+import { Password } from './password/password.entity';
+import { Company } from './company/entities/company.entity';
 import { CompanySite } from './company/entities/company-site.entity';
 import { UserSite } from './users/user-site.entity';
 import { UserRole } from './users/user-role.entity';
@@ -13,6 +15,7 @@ import { RolesGuard } from './users/roles.guard';
 import { CompanyModule } from './company/company.module';
 import { SendgridService } from './sendgrid/sendgrid.service';
 import { ConfigModule } from '@nestjs/config';
+import { PasswordModule } from './password/password.module';
 
 @Module({
   imports: [
@@ -28,10 +31,19 @@ import { ConfigModule } from '@nestjs/config';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User, UserRole, Role, UserSite, CompanySite]),
+    TypeOrmModule.forFeature([
+      User,
+      UserRole,
+      Role,
+      UserSite,
+      CompanySite,
+      Password,
+      Company,
+    ]),
     UsersModule,
     CompanyModule,
     ConfigModule.forRoot(),
+    PasswordModule,
   ],
   providers: [
     {

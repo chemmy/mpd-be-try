@@ -21,7 +21,7 @@ export class RolesGuard implements CanActivate {
     // for Checking:
     const user = {
       name: 'Louis',
-      roles: [Role.DATA_INPUT],
+      roles: [Role.ADMIN],
     };
 
     console.log('--->', requireRoles);

@@ -3,8 +3,8 @@ import { UserRole } from './user-role.entity';
 import { UserSite } from './user-site.entity';
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ unique: true })
   username: string;

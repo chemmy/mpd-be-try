@@ -1,8 +1,8 @@
 export enum Role {
-  ADMIN = 'admin',
-  DATA_INPUT = 'data_input',
-  DATA_VIEW = 'data_view',
-  DATA_OPERATOR = 'data_operator',
-  ALL_DATA_VIEW = 'all_data_view',
-  ALL_DATA_INPUT = 'all_data_input',
+  ADMIN = 'Admin',
+  DATA_INPUT = 'Data Input',
+  DATA_VIEW = 'Data View',
+  DATA_OPERATOR = 'Data Operator',
+  ALL_DATA_VIEW = 'All Data View',
+  ALL_DATA_INPUT = 'All Data Input',
 }

@@ -6,11 +6,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
-// import { MongooseModule } from '@nestjs/mongoose';
-// import { UserSchema } from 'src/users/schemas/user.schema';
-// import { EmailVerificationSchema } from './schemas/emailverification.schema';
-// import { ForgottenPasswordSchema } from './schemas/forgottenpassword.schema';
-// import { ConsentRegistrySchema } from './schemas/consentregistry.schema';
 
 @Module({
   imports: [
@@ -22,12 +17,6 @@ import { JwtStrategy } from './jwt.strategy';
       },
     }),
     TypeOrmModule.forFeature([UsersRepository]),
-    // MongooseModule.forFeature([
-    //   { name: 'User', schema: UserSchema },
-    //   { name: 'EmailVerification', schema: EmailVerificationSchema },
-    //   { name: 'ForgottenPassword', schema: ForgottenPasswordSchema },
-    //   { name: 'ConsentRegistry', schema: ConsentRegistrySchema },
-    // ]),
   ],
   providers: [AuthService, JwtStrategy],
   controllers: [AuthController],

@@ -1,13 +1,21 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { UserRole } from './user-role.entity';
-import { UserSite } from './user-site.entity';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
+import { Role } from '../auth/role.entity';
+import { Company } from '../company/entities/company.entity';
+import { CompanySite } from '../company/entities/company-site.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ unique: true })
-  username: string;
+  email: string;
 
   @Column()
   password: string;
@@ -24,15 +32,19 @@ export class User {
   @Column()
   registration_notes: string;
 
-  @Column()
-  company_id: string;
+  @ManyToOne(() => Company, (company) => company.users, {
+    onDelete: 'SET NULL',
+  })
+  company: Company;
+
+  @ManyToMany(() => Role, (role) => role.users)
+  @JoinTable({ name: 'user_roles' })
+  roles: Role[];
+
+  @ManyToMany(() => CompanySite, (company_site) => company_site.users)
+  @JoinTable({ name: 'user_sites' })
+  company_sites: CompanySite[];
 
   @Column()
   status: string;
-
-  @OneToMany(() => UserRole, (userRole) => userRole.user)
-  userRole: UserRole[];
-
-  @OneToMany(() => UserSite, (userSite) => userSite.user)
-  userSite: UserSite[];
 }

@@ -1,10 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { UserSite } from '../../users/user-site.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../../users/user.entity';
 
 @Entity()
 export class CompanySite {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column()
+  name: string;
 
   @Column()
   region: string;
@@ -30,18 +33,9 @@ export class CompanySite {
   @Column()
   email: string;
 
-  @Column()
-  type: string;
-
-  @Column()
-  is_supply: boolean;
-
-  @Column()
-  is_demand: boolean;
+  @ManyToMany(() => User, (user) => user.company_sites)
+  users: User[];
 
   @Column()
   status: string;
-
-  @OneToMany(() => UserSite, (userSite) => userSite.companySite)
-  userSite: UserSite[];
 }

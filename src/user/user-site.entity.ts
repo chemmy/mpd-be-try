@@ -12,12 +12,4 @@ export class UserSite {
 
   @Column()
   status: string;
-
-  @ManyToOne(() => User, (user) => user.userSite, { onDelete: 'SET NULL' })
-  user: User;
-
-  @ManyToOne(() => CompanySite, (site) => site.userSite, {
-    onDelete: 'SET NULL',
-  })
-  companySite: CompanySite;
 }

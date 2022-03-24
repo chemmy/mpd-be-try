@@ -12,10 +12,4 @@ export class UserRole {
 
   @Column()
   status: string;
-
-  @ManyToOne(() => User, (user) => user.userRole, { onDelete: 'SET NULL' })
-  user: User;
-
-  @ManyToOne(() => Role, (role) => role.userRole, { onDelete: 'SET NULL' })
-  role: Role;
 }

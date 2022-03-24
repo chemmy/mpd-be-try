@@ -2,7 +2,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { PasswordModule } from './password/password.module';
 
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -18,7 +17,6 @@ import { RolesGuard } from './user/roles.guard';
 import { SendgridService } from './sendgrid/sendgrid.service';
 import { UserRole } from './user/user-role.entity';
 import { UserSite } from './user/user-site.entity';
-import { Password } from './password/password.entity';
 
 @Module({
   imports: [
@@ -41,12 +39,10 @@ import { Password } from './password/password.entity';
       Role,
       UserSite,
       CompanySite,
-      Password,
       Company,
     ]),
     UsersModule,
     CompanyModule,
-    PasswordModule,
     TypeOrmModule.forFeature([User, Role, Company, CompanySite]),
   ],
   providers: [

@@ -5,18 +5,18 @@ import { ConfigModule } from '@nestjs/config';
 
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { UsersModule } from './user/user.module';
+import { UsersModule } from './users/user.module';
 import { CompanyModule } from './company/company.module';
 
-import { User } from './user/user.entity';
+import { User } from './users/user.entity';
 import { Role } from './auth/role.entity';
 import { Company } from './company/entities/company.entity';
 import { CompanySite } from './company/entities/company-site.entity';
 
-import { RolesGuard } from './user/roles.guard';
+import { RolesGuard } from './users/roles.guard';
 import { SendgridService } from './sendgrid/sendgrid.service';
-import { UserRole } from './user/user-role.entity';
-import { UserSite } from './user/user-site.entity';
+import { UserRole } from './users/user-role.entity';
+import { UserSite } from './users/user-site.entity';
 
 @Module({
   imports: [

@@ -1,4 +1,4 @@
-import { UsersRepository } from '../user/user.repository';
+import { UsersRepository } from '../users/user.repository';
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';

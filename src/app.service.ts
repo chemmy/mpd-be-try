@@ -1,9 +1,9 @@
 import { Password } from './password/password.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
-import { User } from './users/user.entity';
-import { UserRole } from './users/user-role.entity';
-import { UserSite } from './users/user-site.entity';
+import { User } from './user/user.entity';
+import { UserRole } from './user/user-role.entity';
+import { UserSite } from './user/user-site.entity';
 import { Role } from './auth/role.entity';
 import { CompanySite } from './company/entities/company-site.entity';
 import { Repository } from 'typeorm';

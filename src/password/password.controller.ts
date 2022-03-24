@@ -1,6 +1,6 @@
 import { AppService } from './../app.service';
 import { Password } from './password.entity';
-import { UserService } from '../users/user.service';
+import { UserService } from '../user/user.service';
 import { PasswordService } from './password.service';
 import {
   Body,

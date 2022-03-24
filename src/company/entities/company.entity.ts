@@ -1,15 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { User } from '../../users/user.entity';
 
 @Entity()
 export class Company {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  @Column()
-  company_id: string;
-
-  @Column()
-  site_name: string;
 
   @Column()
   region: string;
@@ -34,6 +29,18 @@ export class Company {
 
   @Column()
   email: string;
+
+  @Column()
+  type: string;
+
+  @Column()
+  is_supply: boolean;
+
+  @Column()
+  is_demand: boolean;
+
+  @OneToMany(() => User, (user) => user.company)
+  users: User[];
 
   @Column()
   status: string;

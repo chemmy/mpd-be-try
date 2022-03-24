@@ -1,37 +1,39 @@
-import { CompanySite } from './company/entities/company-site.entity';
-import { UserSite } from './users/user-site.entity';
-import { UserRole } from './users/user-role.entity';
-import { User } from './users/user.entity';
-import { Module } from '@nestjs/common';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Role } from './auth/role.entity';
-import { UsersModule } from './users/user.module';
 import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './users/roles.guard';
-import { CompanyModule } from './company/company.module';
-import { SendgridService } from './sendgrid/sendgrid.service';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+
+import { AuthModule } from './auth/auth.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { UsersModule } from './users/user.module';
+import { CompanyModule } from './company/company.module';
+
+import { User } from './users/user.entity';
+import { Role } from './auth/role.entity';
+import { Company } from './company/entities/company.entity';
+import { CompanySite } from './company/entities/company-site.entity';
+
+import { RolesGuard } from './users/roles.guard';
+import { SendgridService } from './sendgrid/sendgrid.service';
 
 @Module({
   imports: [
     DashboardModule,
     AuthModule,
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'mpd',
+      host: process.env.DB_HOST,
+      port: parseInt(<string>process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User, UserRole, Role, UserSite, CompanySite]),
+    TypeOrmModule.forFeature([User, Role, Company, CompanySite]),
     UsersModule,
     CompanyModule,
-    ConfigModule.forRoot(),
   ],
   providers: [
     {

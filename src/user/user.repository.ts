@@ -11,13 +11,12 @@ import * as bcrypt from 'bcrypt';
 export class UsersRepository extends Repository<User> {
   async createUser(authCredentialsDto: AuthCredentialsDto): Promise<void> {
     const {
-      username,
+      email,
       password,
       firstname,
       lastname,
       contact_number,
       registration_notes,
-      company_id,
       status,
     } = authCredentialsDto;
 
@@ -25,13 +24,12 @@ export class UsersRepository extends Repository<User> {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = this.create({
-      username,
+      email,
       password: hashedPassword,
       firstname,
       lastname,
       contact_number,
       registration_notes,
-      company_id,
       status,
     });
 

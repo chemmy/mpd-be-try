@@ -11,8 +11,8 @@ import { Company } from '../company/entities/company.entity';
 import { CompanySite } from '../company/entities/company-site.entity';
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ unique: true })
   email: string;

@@ -1,3 +1,4 @@
+import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
@@ -15,6 +16,7 @@ import { CompanySite } from './company/entities/company-site.entity';
 
 import { RolesGuard } from './users/roles.guard';
 import { SendgridService } from './sendgrid/sendgrid.service';
+import { PasswordModule } from './password/password.module';
 
 @Module({
   imports: [
@@ -31,16 +33,19 @@ import { SendgridService } from './sendgrid/sendgrid.service';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User, Role, Company, CompanySite]),
     UsersModule,
     CompanyModule,
+    TypeOrmModule.forFeature([User, Role, Company, CompanySite]),
+    PasswordModule,
   ],
   providers: [
+    AppService,
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
     SendgridService,
   ],
+  exports: [AppService],
 })
 export class AppModule {}

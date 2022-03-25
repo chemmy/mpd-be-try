@@ -12,4 +12,12 @@ export class AppService {
     @InjectRepository(Role) private rolesRepo: Repository<Role>,
     @InjectRepository(CompanySite) private sitesRepo: Repository<CompanySite>,
   ) {}
+
+  async findOne(condition: any): Promise<User> {
+    return this.userRepo.findOne(condition);
+  }
+
+  async update(id: number, data: any): Promise<any> {
+    return this.userRepo.update(id, data);
+  }
 }

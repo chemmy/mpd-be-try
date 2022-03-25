@@ -1,6 +1,4 @@
-import { Document } from 'mongoose';
-
-export interface ConsentRegistry extends Document {
+export interface ConsentRegistry {
   email: string;
   registrationForm: string[];
   checkboxText: string;

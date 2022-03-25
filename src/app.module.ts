@@ -1,3 +1,4 @@
+import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
@@ -15,8 +16,7 @@ import { CompanySite } from './company/entities/company-site.entity';
 
 import { RolesGuard } from './users/roles.guard';
 import { SendgridService } from './sendgrid/sendgrid.service';
-import { UserRole } from './users/user-role.entity';
-import { UserSite } from './users/user-site.entity';
+import { PasswordModule } from './password/password.module';
 
 @Module({
   imports: [
@@ -25,32 +25,27 @@ import { UserSite } from './users/user-site.entity';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
-      port: parseInt(<string>process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'mpd',
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([
-      User,
-      UserRole,
-      Role,
-      UserSite,
-      CompanySite,
-      Company,
-    ]),
     UsersModule,
     CompanyModule,
     TypeOrmModule.forFeature([User, Role, Company, CompanySite]),
+    PasswordModule,
   ],
   providers: [
+    AppService,
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
     SendgridService,
   ],
+  exports: [AppService],
 })
 export class AppModule {}
